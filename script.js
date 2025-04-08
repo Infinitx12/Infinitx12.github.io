@@ -73,3 +73,28 @@ document.getElementById("feedbackForm").addEventListener("submit", function (e) 
   return;
 }
 
+function doPost(e) {
+  if (!e || !e.postData) {
+    Logger.log("No postData received.");
+    return ContentService.createTextOutput(
+      JSON.stringify({ result: "Error", message: "No data received" })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  Logger.log("Received data: " + e.postData.contents);
+
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const data = JSON.parse(e.postData.contents);
+
+  sheet.appendRow([
+    new Date(),
+    data.name,
+    data.email,
+    data.category,
+    data.message
+  ]);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ result: "Success", data: data })
+  ).setMimeType(ContentService.MimeType.JSON);
+}

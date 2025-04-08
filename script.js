@@ -34,4 +34,38 @@ themeToggle.addEventListener("click", () => {
   const icon = themeToggle.querySelector("span");
   icon.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 });
+document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const form = this;
+  const name = form.querySelector('input[type="text"]').value;
+  const email = form.querySelector('input[type="email"]').value;
+  const category = form.querySelector('select').value;
+  const message = form.querySelector('textarea').value;
+
+  const payload = {
+    name,
+    email,
+    category,
+    message,
+  };
+
+  fetch("YOUR_WEB_APP_URL_HERE", {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Submitted:", data);
+      form.classList.add("hidden");
+      document.querySelector(".thank-you").classList.remove("hidden");
+    })
+    .catch((err) => {
+      alert("Oops! Something went wrong.");
+      console.error(err);
+    });
+});
   

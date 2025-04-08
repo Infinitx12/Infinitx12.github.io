@@ -15,33 +15,33 @@
     <h1>Dorm Feedback & Suggestion</h1>
     <p>Speak up, share your ideas or concerns — anonymously if you want.</p>
     <a href="#form" class="scroll-btn">Give Feedback ↓</a>
-    <div id="theme-toggle" class="theme-toggle">
   </header>
 
   <section id="form" class="section">
     <div class="form-box">
       <h2>Submit Feedback</h2>
       <form id="feedbackForm">
-       <input type="text" name="name" placeholder="Your Name (optional)" />
+        <input type="text" name="name" placeholder="Your Name (optional)" />
         <input type="email" name="email" placeholder="Email (optional)" />
-         <select name="category" required>...</select>
-          <textarea name="message" rows="5" placeholder="Describe the issue or suggestion..." required></textarea>
-          <input type="file" name="image" accept="image/*" hidden />
-
-        <select required>
+        
+        <select name="category" required>
           <option value="">Select Category</option>
           <option>Maintenance</option>
           <option>Security</option>
           <option>Interpersonal</option>
           <option>Other</option>
         </select>
-        <textarea rows="5" placeholder="Describe the issue or suggestion..." required></textarea>
+        
+        <textarea name="message" rows="5" placeholder="Describe the issue or suggestion..." required></textarea>
+        
         <label class="file-label">
-          <input type="file" accept="image/*" hidden />
+          <input type="file" name="image" accept="image/*" hidden />
           Upload Image
         </label>
+        
         <button type="submit">Submit</button>
       </form>
+      
       <div class="thank-you hidden">
         <h3>Thank you!</h3>
         <p>Your feedback has been submitted successfully.</p>

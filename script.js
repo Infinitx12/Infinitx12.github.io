@@ -50,7 +50,7 @@ document.getElementById("feedbackForm").addEventListener("submit", function (e) 
     message,
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbyVn9-9y_TtIhAvqK-UwDfcigu2jDAJ7L-W-1a-WQSMmwZhqbCTKFZikS7_xF3mt2krLg/exec", {
+  fetch(https://script.google.com/macros/s/AKfycbyVn9-9y_TtIhAvqK-UwDfcigu2jDAJ7L-W-1a-WQSMmwZhqbCTKFZikS7_xF3mt2krLg/exec, {
     method: "POST",
     body: JSON.stringify(payload),
     headers: {
@@ -68,4 +68,8 @@ document.getElementById("feedbackForm").addEventListener("submit", function (e) 
       console.error(err);
     });
 });
-  
+  if (!category || !message) {
+  alert("Please fill out all required fields.");
+  return;
+}
+

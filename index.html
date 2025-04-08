@@ -22,8 +22,12 @@
     <div class="form-box">
       <h2>Submit Feedback</h2>
       <form id="feedbackForm">
-        <input type="text" placeholder="Your Name (optional)" />
-        <input type="email" placeholder="Email (optional)" />
+       <input type="text" name="name" placeholder="Your Name (optional)" />
+        <input type="email" name="email" placeholder="Email (optional)" />
+         <select name="category" required>...</select>
+          <textarea name="message" rows="5" placeholder="Describe the issue or suggestion..." required></textarea>
+          <input type="file" name="image" accept="image/*" hidden />
+
         <select required>
           <option value="">Select Category</option>
           <option>Maintenance</option>

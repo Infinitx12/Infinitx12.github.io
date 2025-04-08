@@ -16,6 +16,7 @@ document.getElementById("feedbackForm").addEventListener("submit", function (e) 
   const category = form.querySelector('select').value;
   const message = form.querySelector('textarea').value;
 
+  // Validation for required fields
   if (!category || !message) {
     alert("Please fill out all required fields.");
     return;
@@ -55,3 +56,30 @@ themeToggle.addEventListener("click", () => {
   const icon = themeToggle.querySelector("span");
   icon.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 });
+
+// Function to handle POST data in Google Apps Script (backend)
+function doPost(e) {
+  if (!e || !e.postData) {
+    Logger.log("No postData received.");
+    return ContentService.createTextOutput(
+      JSON.stringify({ result: "Error", message: "No data received" })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  Logger.log("Received data: " + e.postData.contents);
+
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const data = JSON.parse(e.postData.contents);
+
+  sheet.appendRow([
+    new Date(),
+    data.name,
+    data.email,
+    data.category,
+    data.message
+  ]);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ result: "Success", data: data })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
